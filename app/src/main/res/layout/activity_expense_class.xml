@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_expense_class"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.ayush.expensemanagerninjas.ExpenseClass">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:id="@+id/Activityid"
+        android:gravity="center"
+        android:text="Random Class"
+        android:textSize="30dp"/>
+   <android.support.design.widget.TextInputLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="30dp">
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:drawableLeft="@drawable/ic_shopping_bag"
+           android:drawablePadding="13dp"
+           android:id="@+id/Itemname"
+           android:hint="Item Name" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawablePadding="13dp"
+            android:drawableLeft="@drawable/ic_persons_number_symbol"
+            android:hint="Quantity"
+            android:id="@+id/quantity"
+            android:inputType="number"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/pr"
+            android:hint="Price"
+            android:id="@+id/price"
+            android:drawablePadding="13dp"
+            android:inputType="number"/>
+
+
+   </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/ic_calendar"
+            android:hint="Expenditure Date"
+            android:id="@+id/Date"
+            android:drawablePadding="13dp"
+            android:inputType="number"/>
+
+
+    </android.support.design.widget.TextInputLayout>
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/submit"
+            android:layout_gravity="center"
+            android:layout_toRightOf="@+id/Date"
+            android:layout_margin="10dp"
+            />
+
+
+
+</LinearLayout>
