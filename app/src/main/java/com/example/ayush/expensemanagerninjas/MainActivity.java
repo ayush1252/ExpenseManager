@@ -1,6 +1,9 @@
 package com.example.ayush.expensemanagerninjas;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,15 +16,16 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     GridView androidGridView;
 
+    final String[] gridViewString = {
+            "Utilities", "Food", "Travel", "Miscellaneous"
+
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final String[] gridViewString = {
-                "Utilities", "Food", "Travel", "Miscellaneous"
 
-        };
 
 
         int[] gridViewImageId = {
@@ -57,7 +61,28 @@ public class MainActivity extends AppCompatActivity {
         if(item.getItemId()==R.id.viewall)
             Toast.makeText(this, "Select all", Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(this, "Total Value", Toast.LENGTH_SHORT).show();
+        {
+            Integer totalval=0;
+            AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("All Expenses ");
+            String[] value=new String[4];
+            for(int i=0 ; i<gridViewString.length; i++) {
+                String str=gridViewString[i];
+                SharedPreferences preferences = getSharedPreferences(str, MODE_PRIVATE);
+               totalval+= preferences.getInt("Total",0);
+                value[i]=gridViewString[i]+"  :  "+String .valueOf(preferences.getInt("Total",0));
+            }
+            builder.setItems(value, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog dialog=builder.create();
+            dialog.show();
+            Toast.makeText(this,String.valueOf(totalval), Toast.LENGTH_SHORT).show();
+
+        }
 
         return  true;
     }

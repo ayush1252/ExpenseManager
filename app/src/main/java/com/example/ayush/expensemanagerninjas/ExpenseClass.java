@@ -1,7 +1,9 @@
 package com.example.ayush.expensemanagerninjas;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -106,48 +108,71 @@ TextView textView;
                 }
                  pricee=Integer.valueOf(price);
 
-                //Adding the values to Shared Prefrences
-                SharedPreferences preferences=getSharedPreferences(str,MODE_APPEND);
-                SharedPreferences.Editor editor=preferences.edit();
+                final AlertDialog.Builder builder=new AlertDialog.Builder(ExpenseClass.this);
+                builder.setTitle("Are You Sure");
+                builder.setMessage("Do You Want to add this Expense ?");
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                String val= preferences.getString("Name","");
-                val=val+name+"\n";
-                editor.putString("Name",val);
+                        //Adding the values to Shared Prefrences
+                        SharedPreferences preferences=getSharedPreferences(str,MODE_APPEND);
+                        SharedPreferences.Editor editor=preferences.edit();
 
-                 val= preferences.getString("Date","");
-                val=val+dat+"\n";
-                editor.putString("Date",val);
+                        String val= preferences.getString("Name","");
+                        val=val+name+"\n";
+                        editor.putString("Name",val);
 
-                 val= preferences.getString("Quantity","");
-                val=val+qty+"\n";
-                editor.putString("Quantity",val);
+                        val= preferences.getString("Date","");
+                        val=val+dat+"\n";
+                        editor.putString("Date",val);
 
-                 val= preferences.getString("Price","");
-                val=val+price+"\n";
-                editor.putString("Price",val);
+                        val= preferences.getString("Quantity","");
+                        val=val+qty+"\n";
+                        editor.putString("Quantity",val);
 
-                editor.commit();
-                Toast.makeText(ExpenseClass.this, preferences.getString("Date",""), Toast.LENGTH_SHORT).show();
+                        val= preferences.getString("Price","");
+                        val=val+price+"\n";
+                        editor.putString("Price",val);
 
-                //Making a list out of all Strings-Same can be done for the rest of the columns
-                String itr=preferences.getString("Date","");
-                ArrayList<String>alldates=new ArrayList<String>();
-                for(int i=0; i<itr.length();)
-                {
-                    int j=i;
-                    while(j<itr.length()&&itr.charAt(j)!='\n')
-                        j++;
-                    alldates.add(itr.substring(i,j));
-                    i=j+1;
+                        Integer val1= preferences.getInt("Total",0);
+                        val1=val1+(quantity*pricee);
+                        editor.putInt("Total",val1);
 
-                }
+                        editor.commit();
+                        Toast.makeText(ExpenseClass.this, preferences.getString("Date",""), Toast.LENGTH_SHORT).show();
 
-                //Log.d("lala", String.valueOf(Integer.valueOf(alldates.size())));
-                for(int j=0; j<alldates.size(); j++)
-                {
-                    Log.d("lala",alldates.get(j));
-                }
-               // Toast.makeText(ExpenseClass.this, String.valueOf(quantity+pricee), Toast.LENGTH_SHORT).show();
+                        //Making a list out of all Strings-Same can be done for the rest of the columns
+                        String itr=preferences.getString("Date","");
+                        ArrayList<String>alldates=new ArrayList<String>();
+                        for(int i=0; i<itr.length();)
+                        {
+                            int j=i;
+                            while(j<itr.length()&&itr.charAt(j)!='\n')
+                                j++;
+                            alldates.add(itr.substring(i,j));
+                            i=j+1;
+
+                        }
+
+                        //Log.d("lala", String.valueOf(Integer.valueOf(alldates.size())));
+                        for(int j=0; j<alldates.size(); j++)
+                        {
+                            Log.d("lala",alldates.get(j));
+                        }
+                        // Toast.makeText(ExpenseClass.this, String.valueOf(quantity+pricee), Toast.LENGTH_SHORT).show();
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+
             }
         });
     }
