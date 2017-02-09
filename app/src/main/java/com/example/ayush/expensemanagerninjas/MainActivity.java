@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 R.drawable.ic_milk, R.drawable.ic_beer, R.drawable.ic_taxi, R.drawable.ic_milk
         };
 
+
         CustomGridView adapterViewAndroid = new CustomGridView(MainActivity.this, gridViewString, gridViewImageId);
         androidGridView = (GridView) findViewById(R.id.gridview);
         androidGridView.setAdapter(adapterViewAndroid);
