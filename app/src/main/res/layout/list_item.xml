@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:id="@+id/ListItemImage"
+            android:src="@drawable/ic_beer"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_weight="3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:id="@+id/ExpenseName"
+            android:text="Electricity Bill"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="25dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ExpenseName"
+            android:layout_margin="6dp"
+            android:textStyle="bold"
+            android:id="@+id/ExpenseDate"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:text="22/11/1997"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ExpenseDate"
+            android:text="Quantity:"
+            android:id="@+id/ExpenseHeadQuantity"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ExpenseHeadQuantity"
+            android:text="10"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/ExpenseQuantity"
+            android:layout_below="@+id/ExpenseDate"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price:"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/ExpenseHeadPrice"
+            android:layout_below="@+id/ExpenseDate"
+            android:layout_toStartOf="@+id/ExpensePrice"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:layout_marginLeft="0dp"
+            android:id="@+id/ExpensePrice"
+            android:layout_below="@+id/ExpenseDate"
+            android:layout_alignEnd="@+id/ExpenseDate"
+            android:layout_marginEnd="14dp" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

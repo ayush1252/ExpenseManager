@@ -70,7 +70,16 @@ TextView textView;
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                date.findFocus();
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        (DatePickerDialog.OnDateSetListener) ExpenseClass.this,
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.setAccentColor(getResources().getColor(R.color.colorPrimaryDark));
+                dpd.setVersion(DatePickerDialog.Version.VERSION_1);
+                dpd.show(getFragmentManager(), "Datepickerdialog");
             }
         });
 
@@ -146,7 +155,7 @@ TextView textView;
                         editor.putInt("Total",val1);
 
                         editor.commit();
-                        Toast.makeText(ExpenseClass.this, preferences.getString("Date",""), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ExpenseClass.this, "Your expenditure has been added", Toast.LENGTH_SHORT).show();
 
                         //Making a list out of all Strings-Same can be done for the rest of the columns
                         String itr=preferences.getString("Date","");
@@ -168,6 +177,7 @@ TextView textView;
                         }
                         // Toast.makeText(ExpenseClass.this, String.valueOf(quantity+pricee), Toast.LENGTH_SHORT).show();
                         dialog.cancel();
+                        startActivity(new Intent(ExpenseClass.this,MainActivity.class));
                     }
                 });
 

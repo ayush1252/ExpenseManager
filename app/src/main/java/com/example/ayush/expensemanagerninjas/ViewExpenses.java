@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class ViewExpenses extends AppCompatActivity {
         for (int i = 0; i < gridViewString.length; i++) {
             String str = gridViewString[i];
             SharedPreferences preferences = getSharedPreferences(str, MODE_PRIVATE);
+
 
             String name = preferences.getString("Name", "");
             String date = preferences.getString("Date", "");
@@ -85,7 +87,13 @@ public class ViewExpenses extends AppCompatActivity {
 
 
         //Sorting the array list on the basis of date
-        Collections.sort(arrayList);
+
+        try {
+            Collections.sort(arrayList);
+        } catch (Exception e)
+        {
+            Toast.makeText(this, "Couldnt sort", Toast.LENGTH_SHORT).show();
+        }
 
         /////////////////DEBUG
         try {
@@ -104,6 +112,9 @@ public class ViewExpenses extends AppCompatActivity {
         Log.d("TAG",String.valueOf(allquantity.size()));
         Log.d("TAG",String.valueOf(allprice.size()));
         /////////////////////////
+
+        ListView listView= (ListView) findViewById(R.id.list);
+        listView.setAdapter(new ListAdapter(this,arrayList));
 
     }
 

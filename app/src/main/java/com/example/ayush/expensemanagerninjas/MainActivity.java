@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             });
             AlertDialog dialog=builder.create();
             dialog.show();
-            Toast.makeText(this,String.valueOf(totalval), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,String.valueOf(totalval), Toast.LENGTH_SHORT).show();
 
         }
 

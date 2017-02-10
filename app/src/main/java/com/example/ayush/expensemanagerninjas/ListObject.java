@@ -19,7 +19,7 @@ public class ListObject implements Comparable<ListObject> {
     String Type;
     String Quantity;
     String  Price;
-    String Datestr;
+    public String Datestr;
     Date Dateobj;
 
     public ListObject(Context context, String name, String type, String quantity, String price, String datestr) {

@@ -72,6 +72,7 @@
             android:drawableLeft="@drawable/ic_calendar"
             android:hint="Expenditure Date"
             android:id="@+id/Date"
+            android:focusable="false"
             android:drawablePadding="13dp"
             android:inputType="number"/>
 
