@@ -59,19 +59,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.viewall)
-            Toast.makeText(this, "Select all", Toast.LENGTH_SHORT).show();
+        {
+            Intent intent=new Intent(MainActivity.this,ViewExpenses.class);
+            startActivity(intent);
+        }
         else
         {
             Integer totalval=0;
             AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("All Expenses ");
-            String[] value=new String[4];
+            builder.setCancelable(false);
+            builder.setIcon(R.drawable.ic_beer);
+            String[] value=new String[5];
             for(int i=0 ; i<gridViewString.length; i++) {
                 String str=gridViewString[i];
                 SharedPreferences preferences = getSharedPreferences(str, MODE_PRIVATE);
                totalval+= preferences.getInt("Total",0);
                 value[i]=gridViewString[i]+"  :  "+String .valueOf(preferences.getInt("Total",0));
             }
+            value[4]="Total Expenditure"+"  :  "+String .valueOf(totalval);
             builder.setItems(value, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
